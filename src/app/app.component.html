@@ -1,6 +1,6 @@
 <mat-toolbar role="heading" color="primary">
   <button mat-icon-button (click)="sidenavOpened = !sidenavOpened">
-      <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
   <h1>NgRx ToDo App</h1>
 </mat-toolbar>
@@ -9,7 +9,43 @@
   <mat-drawer mode="over" [opened]="sidenavOpened" role="region">
     <span>Sidenav Content</span>
   </mat-drawer>
-  <mat-drawer-content role="regions">Main content</mat-drawer-content>
+  <mat-drawer-content role="regions">
+    <div class="columns-container">
+
+      <mat-list>
+        <h3 mat-subheader>First column</h3>
+        <mat-list-item>
+          <mat-card>First Card</mat-card>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-card>Second Card</mat-card>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-list>
+        <h3 mat-subheader>Second column</h3>
+        <mat-list-item>
+          <mat-card>First Card</mat-card>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-card>Second Card</mat-card>
+        </mat-list-item>
+      </mat-list>
+
+      <mat-list>
+        <h3 mat-subheader>Third column</h3>
+        <mat-list-item>
+          <mat-card>First Card</mat-card>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-card>Second Card</mat-card>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-card>Third Card</mat-card>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-drawer-content>
 </mat-drawer-container>
 
 <router-outlet></router-outlet>
