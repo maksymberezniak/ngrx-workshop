@@ -1,8 +1,7 @@
 :host {
   height: 100vh;
   display: grid;
-  grid-template: "toolbar"
-    "page-container"1fr;
+  grid-template: "toolbar" "page-container" 1fr;
 }
 
 h1 {
@@ -12,7 +11,7 @@ h1 {
 mat-toolbar {
   grid-area: toolbar;
   display: grid;
-  grid-template: "title menu"auto / 1fr 50px;
+  grid-template: "menu title" auto / 1fr;
 }
 
 mat-sidenav-container {

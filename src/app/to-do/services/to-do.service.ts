@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ToDoModule } from '../to-do.module';
+import { HttpClient } from '@angular/common/http';
+import { ToDo } from '../models/to-do.model';
 
 @Injectable({
-  providedIn: ToDoModule
+  providedIn: 'root'
 })
 export class ToDoService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  getTodos() {
+    return this.httpClient.get<ToDo[]>('http://localhost:3000/todos');
+  }
 }

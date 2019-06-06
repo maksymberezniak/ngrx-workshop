@@ -2,9 +2,10 @@ module.exports = function () {
   var faker = require("faker");
   var _ = require("lodash");
   return {
-    todos: _.times(100, function (n) {
+    todos: _.times(25, function (n) {
       return {
         id: n,
+        stage: faker.random.arrayElement(['waiting', 'in progress', 'done']),
         asignee: faker.name.findName(),
         avatar: faker.internet.avatar(),
         email: faker.internet.email(),
