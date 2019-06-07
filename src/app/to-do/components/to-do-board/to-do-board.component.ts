@@ -1,53 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { ToDoService } from '../../services/to-do.service';
-import { ToDo } from '../../models/to-do.model';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ToDo } from '../../../models/to-do.model';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/models/app-state';
+import * as todoActions from '../../../store/to-do/to-do.actions';
 
 @Component({
   selector: 'app-to-do-board',
   templateUrl: './to-do-board.component.html',
-  styleUrls: ['./to-do-board.component.scss']
+  styleUrls: ['./to-do-board.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToDoBoardComponent implements OnInit {
 
-  waitingToDos: ToDo[] = [];
-  inProgressToDos: ToDo[] = [];
-  doneToDos: ToDo[] = [];
-
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi'
-  ];
+  todos$: Observable<ToDo[]>;
 
   constructor(
-    private toDoService: ToDoService
-  ) { }
-
-  ngOnInit() {
-    this.toDoService.getTodos()
-      .subscribe(todos => {
-        todos.forEach(todo => {
-          switch (todo.stage) {
-            case 'done': this.doneToDos.push(todo); break;
-            case 'in progress': this.inProgressToDos.push(todo); break;
-            case 'waiting': this.waitingToDos.push(todo); break;
-            default: break;
-          }
-        });
-
-        console.log({ waiting: this.waitingToDos });
-        console.log({ inProgress: this.inProgressToDos });
-        console.log({ done: this.doneToDos });
-      });
+    private store: Store<AppState>
+  ) {
+    this.todos$ = this.store.select(state => state.todos);
   }
 
-  drop(event: CdkDragDrop<string>) {
-    console.log(event);
+  ngOnInit() {
+    this.getToDos();
+  }
+
+  getToDos() {
+    this.store.dispatch(new todoActions.LoadTodosAction());
+  }
+
+  deleteTodo(item: ToDo) {
+    this.store.dispatch(new todoActions.DeleteTodoAction(item.id));
   }
 }
