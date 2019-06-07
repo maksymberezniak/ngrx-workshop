@@ -6,6 +6,7 @@ import { ToDoBoardComponent } from './components/to-do-board/to-do-board.compone
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CommonModule,
     MatListModule,
     MatCardModule,
+    MatIconModule,
     DragDropModule
   ],
   exports: [

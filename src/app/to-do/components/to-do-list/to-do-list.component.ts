@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ToDo } from '../../models/to-do.model';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-to-do-list',
@@ -16,7 +17,7 @@ export class ToDoListComponent implements OnInit {
 
   }
 
-  drop(event) {
+  drop(event: CdkDragDrop<ToDo[]>) {
     console.log(event);
   }
 

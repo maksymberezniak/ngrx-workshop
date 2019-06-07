@@ -5,4 +5,5 @@ export class ToDo {
     avatar: string;
     email: string;
     description: string;
+    priority: 'high' | 'low';
 }

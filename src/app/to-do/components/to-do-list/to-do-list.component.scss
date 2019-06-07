@@ -1,5 +1,6 @@
 .todo-list {
-  &__item {
+  .mat-list-item {
+    height: fit-content;
     margin-bottom: 20px;
   }
 
