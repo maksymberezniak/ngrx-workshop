@@ -1,6 +1,6 @@
 <mat-toolbar role="heading" color="primary">
   <button mat-icon-button (click)="sidenavOpened = !sidenavOpened">
-      <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
   <h1>NgRx ToDo App</h1>
 </mat-toolbar>
@@ -9,7 +9,9 @@
   <mat-drawer mode="over" [opened]="sidenavOpened" role="region">
     <span>Sidenav Content</span>
   </mat-drawer>
-  <mat-drawer-content role="regions">Main content</mat-drawer-content>
+  <mat-drawer-content role="regions">
+    <app-to-do-board></app-to-do-board>
+  </mat-drawer-content>
 </mat-drawer-container>
 
 <router-outlet></router-outlet>

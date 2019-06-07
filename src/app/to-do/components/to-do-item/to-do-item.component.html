@@ -1,3 +1,15 @@
-<p>
-  to-do-item works!
-</p>
+<mat-card class="todo-item">
+  <mat-card-header>
+    <img mat-card-avatar [src]="todo.avatar" alt="user avatar">
+    <mat-card-title>{{todo.asignee}}</mat-card-title>
+    <mat-card-subtitle>{{todo.email}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{todo.description}}</p>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-icon aria-hidden="false" [style.color]="todo.priority === 'low' ? 'green' : 'red'">
+      {{todo.priority === 'low' ? 'arrow_downward' : 'arrow_upward'}}
+    </mat-icon>
+  </mat-card-footer>
+</mat-card>

@@ -1,20 +1,24 @@
 :host {
-    height: 100vh;
-    display: grid;
-    grid-template: "toolbar"
-                   "page-container" 1fr;
-  }
-  h1 {
-    grid-area: title;
-  }
-  
-  mat-toolbar {
-    grid-area: toolbar;
-    display: grid;
-    grid-template:  "title menu" auto
-    / 1fr 50px;
-  }
-  
-  mat-sidenav-container {
-    grid-area: page-container
-  }
+  height: 100vh;
+  display: grid;
+  grid-template: "toolbar" "page-container" 1fr;
+}
+
+h1 {
+  grid-area: title;
+}
+
+mat-toolbar {
+  grid-area: toolbar;
+  display: grid;
+  grid-template: "menu title" auto / 1fr;
+}
+
+mat-sidenav-container {
+  grid-area: page-container
+}
+
+.columns-container {
+  display: flex;
+  justify-content: space-evenly;
+}

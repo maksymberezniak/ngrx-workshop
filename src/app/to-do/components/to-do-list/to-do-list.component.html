@@ -1,0 +1,6 @@
+<mat-list class="todo-list" cdkDropList (cdkDropListDropped)="drop($event)">
+  <h3 mat-subheader class="todo-list__subheader">{{title}}</h3>
+  <mat-list-item class="todo-list__item" *ngFor="let todo of todos" cdkDrag>
+    <app-to-do-item [todo]="todo"></app-to-do-item>
+  </mat-list-item>
+</mat-list>
