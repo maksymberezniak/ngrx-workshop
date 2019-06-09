@@ -8,6 +8,10 @@ import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { todoReducer } from './state/to-do.reducer';
+import { ToDoEffects } from './state/to-do.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    DragDropModule
+    DragDropModule,
+    StoreModule.forFeature('todos', todoReducer),
+    EffectsModule.forFeature([ToDoEffects])
   ],
   exports: [
     ToDoBoardComponent

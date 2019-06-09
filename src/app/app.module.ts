@@ -15,8 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { ToDoModule } from './to-do/to-do.module';
-import { todoReducer } from './store/to-do/to-do.reducer';
-import { ToDoEffects } from './store/to-do/to-do.effects';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,9 +31,13 @@ import { ToDoEffects } from './store/to-do/to-do.effects';
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
-    StoreModule.forRoot({ todos: todoReducer }),
-    EffectsModule.forRoot([ToDoEffects]),
-    StoreDevtoolsModule.instrument()
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx ToDo App Devtools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

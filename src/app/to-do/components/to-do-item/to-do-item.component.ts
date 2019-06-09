@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ToDo } from '../../../models/to-do.model';
+import { ToDo } from '../../models/to-do.model';
 import { Store } from '@ngrx/store';
 
 @Component({

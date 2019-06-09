@@ -1,9 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ToDo } from '../../../models/to-do.model';
+import { ToDo } from '../../models/to-do.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/models/app-state';
-import * as todoActions from '../../../store/to-do/to-do.actions';
+import * as todoActions from '../../state/to-do.actions';
+import * as todoSelectors from '../../state/to-do.selectors';
+import { ToDoState } from '../../state/to-do.reducer';
 
 @Component({
   selector: 'app-to-do-board',
@@ -16,9 +17,9 @@ export class ToDoBoardComponent implements OnInit {
   todos$: Observable<ToDo[]>;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<ToDoState>
   ) {
-    this.todos$ = this.store.select(state => state.todos);
+    this.todos$ = this.store.select(todoSelectors.getTodos);
   }
 
   ngOnInit() {
@@ -26,10 +27,10 @@ export class ToDoBoardComponent implements OnInit {
   }
 
   getToDos() {
-    this.store.dispatch(new todoActions.LoadTodosAction());
+    this.store.dispatch(new todoActions.LoadTodos());
   }
 
   deleteTodo(item: ToDo) {
-    this.store.dispatch(new todoActions.DeleteTodoAction(item.id));
+    this.store.dispatch(new todoActions.DeleteTodo(item.id));
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToDoService } from 'src/app/to-do/services/to-do.service';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import * as todosActions from '../../store/to-do/to-do.actions';
+import { ToDoActionTypes, LoadTodosSuccess, DeleteTodo } from './to-do.actions';
 import { switchMap, map } from 'rxjs/operators';
 
 
@@ -14,16 +14,16 @@ export class ToDoEffects {
     ) { }
 
     @Effect() loadTodos$ = this.actions$.pipe(
-        ofType(todosActions.LOAD_TODOS),
+        ofType(ToDoActionTypes.LoadTodos),
         switchMap(() => this.todoService.getTodos()),
-        map(todos => new todosActions.LoadTodosSuccessAction(todos))
+        map(todos => new LoadTodosSuccess(todos))
     );
 
     @Effect() deleteTodo$ = this.actions$.pipe(
-        ofType(todosActions.DELETE_TODO),
+        ofType(ToDoActionTypes.DeleteTodo),
         switchMap(
-            (action: todosActions.DeleteTodoAction) => this.todoService.deleteTodo(action.payload)
-                .pipe(map(company => new todosActions.DeleteTodoSuccessAction(company.id))
+            (action: DeleteTodo) => this.todoService.deleteTodo(action.payload)
+                .pipe(map(company => new DeleteTodo(company.id))
                 )
         )
     );
