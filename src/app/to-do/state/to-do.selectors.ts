@@ -1,9 +1,19 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ToDo } from '../models/to-do.model';
+import { ToDoState } from './to-do.reducer';
 
-const getToDoFeatureState = createFeatureSelector<ToDo[]>('todos');
+const getToDoFeatureState = createFeatureSelector<ToDoState>('todos');
 
-export const getTodos = createSelector(
+export const getWaitingTodos = createSelector(
     getToDoFeatureState,
-    state => state
+    state => state.waiting
+);
+
+export const getInProgressTodos = createSelector(
+    getToDoFeatureState,
+    state => state.inProgress
+);
+
+export const getDoneTodos = createSelector(
+    getToDoFeatureState,
+    state => state.done
 );

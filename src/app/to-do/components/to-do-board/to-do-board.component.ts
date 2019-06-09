@@ -14,12 +14,16 @@ import { ToDoState } from '../../state/to-do.reducer';
 })
 export class ToDoBoardComponent implements OnInit {
 
-  todos$: Observable<ToDo[]>;
+  waitingTodos$: Observable<ToDo[]>;
+  inProgressTodos$: Observable<ToDo[]>;
+  doneTodos$: Observable<ToDo[]>;
 
   constructor(
     private store: Store<ToDoState>
   ) {
-    this.todos$ = this.store.select(todoSelectors.getTodos);
+    this.waitingTodos$ = this.store.select(todoSelectors.getWaitingTodos);
+    this.inProgressTodos$ = this.store.select(todoSelectors.getInProgressTodos);
+    this.doneTodos$ = this.store.select(todoSelectors.getDoneTodos);
   }
 
   ngOnInit() {
@@ -31,6 +35,7 @@ export class ToDoBoardComponent implements OnInit {
   }
 
   deleteTodo(item: ToDo) {
+    console.log(item);
     this.store.dispatch(new todoActions.DeleteTodo(item.id));
   }
 }
