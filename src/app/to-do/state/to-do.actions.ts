@@ -11,7 +11,8 @@ export enum ToDoActionTypes {
     LoadTodos = '[ToDo] Load Todos',
     LoadTodosSuccess = '[ToDo] Load Todos Success',
     DeleteTodo = '[ToDo] Delete Todo',
-    DeleteTodoSuccess = '[ToDo] Delete Todo Success'
+    DeleteTodoSuccess = '[ToDo] Delete Todo Success',
+    LoadTodoFail = '[ToDo] Load Todos Fail'
 }
 
 export class LoadTodos implements Action {
@@ -34,9 +35,15 @@ export class DeleteTodoSuccess implements Action {
     constructor(public payload: number) { }
 }
 
+export class LoadTodoFail implements Action {
+    readonly type = ToDoActionTypes.LoadTodoFail;
+    constructor(public payload: string) { }
+}
+
 export type TodoAction
     = LoadTodos
     | LoadTodosSuccess
     | DeleteTodo
-    | DeleteTodoSuccess;
+    | DeleteTodoSuccess
+    | LoadTodoFail;
 

@@ -3,15 +3,13 @@ import { TodoAction, ToDoActionTypes } from './to-do.actions';
 import { ToDo } from '../models/to-do.model';
 
 export interface ToDoState {
-    waiting: ToDo[];
-    inProgress: ToDo[];
-    done: ToDo[];
+    todos: ToDo[];
+    error: string;
 }
 
 export const initialState: ToDoState = {
-  waiting: [],
-  inProgress: [],
-  done: []  
+    todos: [],
+    error: ''
 };
 
 export function todoReducer(state = initialState, action: TodoAction): ToDoState {
@@ -19,9 +17,14 @@ export function todoReducer(state = initialState, action: TodoAction): ToDoState
         case ToDoActionTypes.LoadTodosSuccess:
             return {
                 ...state,
-                waiting: action.payload.filter(todo => todo.stage === 'waiting'),
-                inProgress: action.payload.filter(todo => todo.stage === 'in progress'),
-                done: action.payload.filter(todo => todo.stage === 'done')
+                todos: action.payload
+            };
+
+        case ToDoActionTypes.LoadTodoFail:
+            return {
+                ...state,
+                todos: [],
+                error: action.payload
             };
 
         default:

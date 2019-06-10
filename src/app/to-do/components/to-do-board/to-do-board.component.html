@@ -1,5 +1,0 @@
-<div class="board">
-  <app-to-do-list [title]="'WAITING'" [todos]="waitingTodos$ | async" (onDeleted)="deleteTodo($event)"></app-to-do-list>
-  <app-to-do-list [title]="'IN PROGRESS'" [todos]="inProgressTodos$ | async" (onDeleted)="deleteTodo($event)"></app-to-do-list>
-  <app-to-do-list [title]="'DONE'" [todos]="doneTodos$ | async" (onDeleted)="deleteTodo($event)"></app-to-do-list>
-</div>

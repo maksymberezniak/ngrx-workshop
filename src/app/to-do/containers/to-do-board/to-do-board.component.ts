@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ToDo } from '../../models/to-do.model';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as todoActions from '../../state/to-do.actions';
 import * as todoSelectors from '../../state/to-do.selectors';
 import { ToDoState } from '../../state/to-do.reducer';
@@ -18,12 +18,26 @@ export class ToDoBoardComponent implements OnInit {
   inProgressTodos$: Observable<ToDo[]>;
   doneTodos$: Observable<ToDo[]>;
 
+  error$: Observable<string>;
+
   constructor(
     private store: Store<ToDoState>
   ) {
-    this.waitingTodos$ = this.store.select(todoSelectors.getWaitingTodos);
-    this.inProgressTodos$ = this.store.select(todoSelectors.getInProgressTodos);
-    this.doneTodos$ = this.store.select(todoSelectors.getDoneTodos);
+    this.waitingTodos$ = this.store.pipe(
+      select(todoSelectors.getWaitingTodos)
+    );
+
+    this.inProgressTodos$ = this.store.pipe(
+      select(todoSelectors.getInProgressTodos)
+    );
+
+    this.doneTodos$ = this.store.pipe(
+      select(todoSelectors.getDoneTodos)
+    );
+
+    this.error$ = this.store.pipe(
+      select(todoSelectors.getError)
+    );
   }
 
   ngOnInit() {

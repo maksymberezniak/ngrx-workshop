@@ -8,9 +8,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./to-do-list.component.scss']
 })
 export class ToDoListComponent implements OnInit {
+
   @Input() title: string;
   @Input() todos: ToDo[];
-  @Output('onDeleted') deleted: EventEmitter<ToDo> = new EventEmitter<ToDo>();
+  @Output() delete: EventEmitter<ToDo> = new EventEmitter<ToDo>();
 
   constructor() { }
 
@@ -24,6 +25,6 @@ export class ToDoListComponent implements OnInit {
 
   onDelete(todo) {
     console.log('in presentational component');
-    this.deleted.emit(todo);
+    this.delete.emit(todo);
   }
 }

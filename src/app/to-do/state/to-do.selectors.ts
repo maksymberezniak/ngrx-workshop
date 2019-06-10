@@ -5,15 +5,20 @@ const getToDoFeatureState = createFeatureSelector<ToDoState>('todos');
 
 export const getWaitingTodos = createSelector(
     getToDoFeatureState,
-    state => state.waiting
+    state => state.todos.filter(todo => todo.stage === 'waiting')
 );
 
 export const getInProgressTodos = createSelector(
     getToDoFeatureState,
-    state => state.inProgress
+    state => state.todos.filter(todo => todo.stage === 'in progress')
 );
 
 export const getDoneTodos = createSelector(
     getToDoFeatureState,
-    state => state.done
+    state => state.todos.filter(todo => todo.stage === 'done')
+);
+
+export const getError = createSelector(
+    getToDoFeatureState,
+    state => state.error
 );
