@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  sidenavOpened = false;
+  opened: boolean = false;
 
-  constructor() {
+  constructor(
+  ) {
+  }
 
+  toggleSidenav() {
+    this.opened = !this.opened;
   }
 }

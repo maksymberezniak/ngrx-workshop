@@ -1,6 +1,24 @@
 <mat-list class="todo-list" cdkDropList (cdkDropListDropped)="drop($event)">
   <h3 mat-subheader class="todo-list__subheader">{{title}}</h3>
   <mat-list-item class="todo-list__item" *ngFor="let todo of todos" cdkDrag>
-    <app-to-do-item [todo]="todo"></app-to-do-item>
+    <mat-card class="todo-item">
+      <mat-card-header>
+        <img mat-card-avatar [src]="todo.avatar" alt="user avatar">
+        <mat-card-title>{{todo.asignee}}</mat-card-title>
+        <mat-card-subtitle>{{todo.email}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{todo.description}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="onDelete(todo)">Delete</button>
+        <button mat-button>Move</button>
+      </mat-card-actions>
+      <mat-card-footer>
+        <mat-icon aria-hidden="false" [style.color]="todo.priority === 'low' ? 'green' : 'red'">
+          {{todo.priority === 'low' ? 'arrow_downward' : 'arrow_upward'}}
+        </mat-icon>
+      </mat-card-footer>
+    </mat-card>
   </mat-list-item>
 </mat-list>

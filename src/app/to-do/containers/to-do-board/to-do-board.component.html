@@ -1,0 +1,8 @@
+<div class="board">
+  <app-to-do-list [title]="'WAITING'" [todos]="waitingTodos$ | async" (delete)="deleteTodo($event)"></app-to-do-list>
+  <app-to-do-list [title]="'IN PROGRESS'" [todos]="inProgressTodos$ | async" (delete)="deleteTodo($event)"></app-to-do-list>
+  <app-to-do-list [title]="'DONE'" [todos]="doneTodos$ | async" (delete)="deleteTodo($event)"></app-to-do-list>
+</div>
+<div style="color: red" *ngIf="error$ | async as error">
+  {{error.message}}
+</div>

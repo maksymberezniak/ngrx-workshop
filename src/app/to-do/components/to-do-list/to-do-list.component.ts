@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToDo } from '../../models/to-do.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -8,8 +8,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   styleUrls: ['./to-do-list.component.scss']
 })
 export class ToDoListComponent implements OnInit {
+
   @Input() title: string;
   @Input() todos: ToDo[];
+  @Output() delete: EventEmitter<ToDo> = new EventEmitter<ToDo>();
 
   constructor() { }
 
@@ -21,4 +23,8 @@ export class ToDoListComponent implements OnInit {
     console.log(event);
   }
 
+  onDelete(todo) {
+    console.log('in presentational component');
+    this.delete.emit(todo);
+  }
 }
